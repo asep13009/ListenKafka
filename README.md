@@ -97,6 +97,14 @@ dan juga yang masuk database masuk dengan kriteria
 
 ![img_1.png](img_1.png)
 
+# Pengecekah helth 
+
+anda bisa cek dengan url : http://localhost:8080/q/health
+cek untuk apakah kafka sudah connect atau belum
+
+![img_2.png](img_2.png)
+
+
 
 =======================================================================================
 # README DEFAULT
