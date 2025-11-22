@@ -1,3 +1,101 @@
+# Cara Build dan Penjelasan
+
+# question :
+Soal 1
+Bangun layanan yang menerima data dari Kafka topic, melakukan manipulasi data, dan menulisnya kembali ke Kafka atau menyimpannya ke database.
+
+Menggunakan tech stack:
+Programming Language: Java 17;
+```shell script
+D:\IFG\listenkafka>java -version
+java version "17.0.12" 2024-07-16 LTS
+Java(TM) SE Runtime Environment (build 17.0.12+8-LTS-286)
+Java HotSpot(TM) 64-Bit Server VM (build 17.0.12+8-LTS-286, mixed mode, sharing)
+```
+Framework: Quarkus;
+{QUARKUS VERSI : 3.29.4}
+<quarkus.platform.version>3.29.4</quarkus.platform.version>
+
+Dataset: Bebas;
+=============> jika ingin di save oleh db , contoh request:
+{"orderId":"123","product":"Laptop","quantity":2,"price":50}
+
+=============> jika ingin di save oleh kafka , contoh request:
+{"orderId":"123","product":"Laptop","quantity":1,"price":5}
+
+Database: Bebas;
+{MYSQL}
+jdbc:mysql://localhost:3306/mydb?allowPublicKeyRetrieval=true&useSSL=false
+
+
+# PERSIAPAN
+# INSTALL DB di DOCKER 
+```shell script
+    docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=P@ssw0rd123 -p 3306:3306 -d mysql:latest
+```
+buat databse dengan nama "mydb"
+anda bisa membuka di aplication properties
+
+quarkus.hibernate-orm.database.generation=drop-and-create
+
+# INSTALL KAFKA di DOCKER
+
+    untuk kafka anda bisa menjalankan docker-composer.yml yang ada di project
+        - masuk path > 
+```shell script
+cd docker-composer.yml
+```
+
+
+```shell script
+        docker-compose up -d
+```
+>>>> buat 2 topik 
+
+"orders-input"
+```shell script
+ docker exec -it kafka  kafka-topics --create --topic orders-input --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
+```
+"orders-output"
+```shell script
+  docker exec -it kafka  kafka-topics --create --topic orders-output --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
+```
+
+
+>>>>> create produce orders-input
+
+```shell script
+docker exec -it kafka kafka-console-producer --topic orders-input --bootstrap-server localhost:9092
+```
+jalankan project di nya
+```shell script
+mvn quarkus:dev
+```
+
+"Di sini bisa memasukan dataset atau message yang bakal di kirim ke project ini"
+
+                jika ingin di save oleh db , contoh request:
+                {"orderId":"123","product":"Laptop","quantity":2,"price":50}
+                jika ingin di save oleh kafka , contoh request:
+                {"orderId":"123","product":"Laptop","quantity":1,"price":5}
+
+
+
+"untuk keterangan lain nya bisa di liat command di project java saya, terimakasih"
+
+
+# HASIL 
+yang masuk ke kafka topik "ordrs-output" hanya yang memenuhi kriteria
+![img.png](img.png)
+
+dan juga yang masuk database masuk dengan kriteria
+
+![img_1.png](img_1.png)
+
+
+=======================================================================================
+# README DEFAULT
+
 # listenkafka
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.

@@ -50,10 +50,10 @@ public class OrderService {
             log.info("{\"orderId\":\"123\",\"product\":\"Laptop\",\"quantity\":1,\"price\":5}");
 
 
-           //jika ingin di save oleh db , contoh request:
-            //{"orderId":"123","product":"Laptop","quantity":2,"price":50}
-            //jika ingin di save oleh kafka , contoh request:
-            //{"orderId":"123","product":"Laptop","quantity":1,"price":5}
+               //jika ingin di save oleh db , contoh request:
+                //{"orderId":"123","product":"Laptop","quantity":2,"price":50}
+                //jika ingin di save oleh kafka , contoh request:
+                //{"orderId":"123","product":"Laptop","quantity":1,"price":5}
 
         }
 
