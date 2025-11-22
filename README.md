@@ -6,6 +6,7 @@ Bangun layanan yang menerima data dari Kafka topic, melakukan manipulasi data, d
 
 Menggunakan tech stack:
 Programming Language: Java 17;
+
 ```shell script
 D:\IFG\listenkafka>java -version
 java version "17.0.12" 2024-07-16 LTS
@@ -13,17 +14,21 @@ Java(TM) SE Runtime Environment (build 17.0.12+8-LTS-286)
 Java HotSpot(TM) 64-Bit Server VM (build 17.0.12+8-LTS-286, mixed mode, sharing)
 ```
 Framework: Quarkus;
+
 {QUARKUS VERSI : 3.29.4}
 <quarkus.platform.version>3.29.4</quarkus.platform.version>
 
 Dataset: Bebas;
+
 =============> jika ingin di save oleh db , contoh request:
 {"orderId":"123","product":"Laptop","quantity":2,"price":50}
+
 
 =============> jika ingin di save oleh kafka , contoh request:
 {"orderId":"123","product":"Laptop","quantity":1,"price":5}
 
 Database: Bebas;
+
 {MYSQL}
 jdbc:mysql://localhost:3306/mydb?allowPublicKeyRetrieval=true&useSSL=false
 
