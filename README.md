@@ -20,13 +20,14 @@ Framework: Quarkus;
 
 Dataset: Bebas;
 
-=============> jika ingin di save oleh db , contoh request:
+=============> contoh request:
 contoh nya ada di class test > kafka/producer/KafkaProducerOrderTest.java
  
 
 Database: Bebas;
 
 {MYSQL}
+
 jdbc:mysql://localhost:3306/mydb?allowPublicKeyRetrieval=true&useSSL=false
 
 
@@ -42,8 +43,9 @@ anda bisa membuka (uncommand) di aplication properties
 
 # INSTALL KAFKA di DOCKER
 
-    untuk kafka anda bisa menjalankan docker-composer.yml yang ada di project
-        - masuk path > 
+untuk kafka anda bisa menjalankan docker-composer.yml yang ada di project
+- masuk path > docker-compose.yml
+
 ```shell script
 cd docker-composer.yml
 ```
@@ -52,13 +54,13 @@ cd docker-composer.yml
 ```shell script
         docker-compose up -d
 ```
->>>> buat 2 topik 
+>>>> buat 2 topik  di cmd 
 
-"orders-input"
+"orders-input"    (data untuk order)
 ```shell script
  docker exec -it kafka  kafka-topics --create --topic orders-input --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
 ```
-"orders-output"
+"orders-output"   (data untuk payment)
 ```shell script
   docker exec -it kafka  kafka-topics --create --topic orders-output --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
 ```
@@ -75,6 +77,7 @@ mvn quarkus:dev
 ```
 
 "Di sini bisa memasukan dataset atau message yang bakal di kirim ke project ini"
+
  atau saya sudah buatkan di > src/test/java/kafka/producer/KafkaProducerOrderTest.java
 
 
@@ -95,14 +98,22 @@ cek untuk apakah kafka sudah connect atau belum
 ![img_2.png](img_2.png)
 
 =====================soal no 2 =========================
-Soal 2
+
+
+# Soal 2
 Buatkan BPMN untuk proses checkout di marketplace, termasuk penjelasan mengenai service yang digunakan serta ilustrasi BPMN-nya dalam test code tersebut. Buatkan prosesnya menggunakan Kogito.
 
-berikut BPMN nya
+karena soal no 1 dan no 2 berhubungan tentang order dab checkout maka saya satukan:
+
+# note
+untuk prosses order saya simpan ke dalam kafka topik "order-input"
+sedangkan untuk data payment saya simpan ke dalam database
+
+# Hasil BPMN
 src/main/resources/checkout.bpmn
-
+svg
 ![checkout.svg](src/main/resources/META-INF/processSVG/checkout.svg)
-
+image
 ![img_3.png](img_3.png)
 
 
@@ -112,8 +123,8 @@ src/main/resources/checkout.bpmn
 
 
 
-==================================================struktur data project saya ==========
-
+=========struktur data project saya ==========
+```shell script
 D:.
 ├───.idea
 ├───.mvn
@@ -172,7 +183,7 @@ D:.
 └───producer
 
 
-
+```
 
 
 
