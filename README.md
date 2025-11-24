@@ -21,11 +21,8 @@ Framework: Quarkus;
 Dataset: Bebas;
 
 =============> jika ingin di save oleh db , contoh request:
-{"orderId":"123","product":"Laptop","quantity":2,"price":50}
-
-
-=============> jika ingin di save oleh kafka , contoh request:
-{"orderId":"123","product":"Laptop","quantity":1,"price":5}
+contoh nya ada di class test > kafka/producer/KafkaProducerOrderTest.java
+ 
 
 Database: Bebas;
 
@@ -39,9 +36,9 @@ jdbc:mysql://localhost:3306/mydb?allowPublicKeyRetrieval=true&useSSL=false
     docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=P@ssw0rd123 -p 3306:3306 -d mysql:latest
 ```
 buat databse dengan nama "mydb"
-anda bisa membuka di aplication properties
+anda bisa membuka (uncommand) di aplication properties
 
-quarkus.hibernate-orm.database.generation=drop-and-create
+>>>>>>> quarkus.hibernate-orm.database.generation=drop-and-create
 
 # INSTALL KAFKA di DOCKER
 
@@ -78,11 +75,7 @@ mvn quarkus:dev
 ```
 
 "Di sini bisa memasukan dataset atau message yang bakal di kirim ke project ini"
-
-                jika ingin di save oleh db , contoh request:
-                {"orderId":"123","product":"Laptop","quantity":2,"price":50}
-                jika ingin di save oleh kafka , contoh request:
-                {"orderId":"123","product":"Laptop","quantity":1,"price":5}
+ atau saya sudah buatkan di > src/test/java/kafka/producer/KafkaProducerOrderTest.java
 
 
 
@@ -93,9 +86,6 @@ mvn quarkus:dev
 yang masuk ke kafka topik "ordrs-output" hanya yang memenuhi kriteria
 ![img.png](img.png)
 
-dan juga yang masuk database masuk dengan kriteria
-
-![img_1.png](img_1.png)
 
 # Pengecekah helth 
 
@@ -103,6 +93,86 @@ anda bisa cek dengan url : http://localhost:8080/q/health
 cek untuk apakah kafka sudah connect atau belum
 
 ![img_2.png](img_2.png)
+
+=====================soal no 2 =========================
+Soal 2
+Buatkan BPMN untuk proses checkout di marketplace, termasuk penjelasan mengenai service yang digunakan serta ilustrasi BPMN-nya dalam test code tersebut. Buatkan prosesnya menggunakan Kogito.
+
+berikut BPMN nya
+src/main/resources/checkout.bpmn
+
+![checkout.svg](src/main/resources/META-INF/processSVG/checkout.svg)
+
+![img_3.png](img_3.png)
+
+
+
+
+
+
+
+
+==================================================struktur data project saya ==========
+
+D:.
+├───.idea
+├───.mvn
+│   └───wrapper
+├───src
+│   ├───main
+│   │   ├───docker
+│   │   ├───java
+│   │   │   ├───health
+│   │   │   ├───kafka
+│   │   │   │   ├───consumer
+│   │   │   │   └───producer
+│   │   │   ├───model
+│   │   │   │   └───entity
+│   │   │   └───service
+│   │   └───resources
+│   │       └───META-INF
+│   │           └───processSVG
+│   └───test
+│       └───java
+│           └───kafka
+│               └───producer
+└───target
+├───classes
+│   ├───health
+│   ├───kafka
+│   │   ├───consumer
+│   │   └───producer
+│   ├───META-INF
+│   │   └───processSVG
+│   ├───model
+│   │   └───entity
+│   └───service
+├───generated-sources
+│   └───annotations
+├───generated-test-sources
+│   └───test-annotations
+├───maven-archiver
+├───maven-status
+│   └───maven-compiler-plugin
+│       ├───compile
+│       │   └───default-compile
+│       └───testCompile
+│           └───default-testCompile
+├───quarkus
+│   └───bootstrap
+├───quarkus-app
+│   ├───app
+│   ├───lib
+│   │   ├───boot
+│   │   └───main
+│   └───quarkus
+├───surefire-reports
+└───test-classes
+└───kafka
+└───producer
+
+
+
 
 
 
