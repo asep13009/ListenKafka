@@ -106,8 +106,10 @@ Buatkan BPMN untuk proses checkout di marketplace, termasuk penjelasan mengenai 
 karena soal no 1 dan no 2 berhubungan tentang order dab checkout maka saya satukan:
 
 # note
-untuk prosses order saya simpan ke dalam kafka topik "order-input"
-sedangkan untuk data payment saya simpan ke dalam database
+untuk prosses order saya simpan ke dalam kafka topik "order-input" (yang tervalidasi datanya)
+
+sedangkan untuk data payment saya simpan ke dalam database > table order (yang tervalidasi datanya)
+![img_4.png](img_4.png)
 
 # Hasil BPMN
 src/main/resources/checkout.bpmn
